@@ -15,7 +15,7 @@ class SingularityModule {
   constructor(http) {
     this._http = http;
 
-    // get v1/singularity/status
+    // GET v1/singularity/status
     this.getUnifiedStatus = makeOperation(http, "v1/singularity", "GET", "status");
   }
 }

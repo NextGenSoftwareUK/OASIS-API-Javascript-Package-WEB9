@@ -2,7 +2,18 @@
   "SingularityController.cs": {
     "route_prefix": "v1/singularity",
     "ops": {
-      "GetUnifiedStatus": { "verb": "get", "route": "status" }
+      "GetUnifiedStatus": {
+        "verb": "GET",
+        "route": "status",
+        "routeParams": [],
+        "queryParams": [],
+        "requestType": null,
+        "responseType": {
+          "wrapper": null,
+          "inner": "UnifiedStatusReport"
+        },
+        "summary": "Probes WEB4-WEB8 in parallel and returns one unified status report - \"the network observing itself\"."
+      }
     }
   }
 }

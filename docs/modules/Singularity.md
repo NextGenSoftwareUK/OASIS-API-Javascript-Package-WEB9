@@ -4,25 +4,59 @@ Source controller: [`SingularityController.cs`](https://github.com/NextGenSoftwa
 Route prefix: `v1/singularity`
 1 operation(s).
 
-All methods are generated 1:1 from the controller's real `[Http*]` routes (see
-[Conventions](../README.md#calling-any-endpoint)). They take a single args
-object: any key matching a `{token}` in the route is substituted into the
-URL; everything else becomes the query string (GET/DELETE) or JSON body
-(POST/PUT).
+Every method takes a single args object: any key matching a `{token}` in the route is substituted into the URL; everything else becomes the query string (GET/DELETE) or JSON body (POST/PUT). Every call resolves to the standard OASIS envelope:
 
-## Methods
+```ts
+{
+  isError: boolean;
+  isWarning: boolean;
+  message: string;
+  errorCode?: string;
+  result: T; // see each endpoint's Response section below
+}
+```
 
-| Method | HTTP | Route | Route params | Query params | Body |
-| --- | --- | --- | --- | --- | --- |
-| `getUnifiedStatus` | GET | `v1/singularity/status` | – | – | – |
+## Operations
 
-## Example
+### `getUnifiedStatus`
+
+Probes WEB4-WEB8 in parallel and returns one unified status report - "the network observing itself".
+
+**GET** `v1/singularity/status`
+
+**Request**
+
+No request body.
+
+**Response**
+
+Standard `OASISResult` envelope (see top of this page) with:
+
+`result` type: `UnifiedStatusReport`
+
+| Field | Type |
+| --- | --- |
+| `Layers` | `List<LayerStatus>` |
+| `AllLayersHealthy` | `bool` |
+| `HealthyLayerCount` | `int` |
+| `TotalLayerCount` | `int` |
+| `GeneratedUtc` | `DateTime` |
+
+**Example**
 
 ```js
-const web9 = new Web9Client({ baseUrl: '...' });
-web9.setToken(jwtToken); // reuse a WEB4 JWT
-
 const { isError, message, result } = await web9.singularity.getUnifiedStatus({});
 if (isError) throw new Error(message);
 console.log(result);
 ```
+
+Example response:
+
+```json
+{
+  "isError": false,
+  "message": "",
+  "result": { "Layers": [{ "LayerName": "example string", "BaseUrl": "example string", "IsReachable": true, "ResponseTimeMs": 1.0, "Metrics": { "<string>": "example string" }, "Error": "example string", "CheckedUtc": "2026-01-01T00:00:00Z" }], "AllLayersHealthy": true, "HealthyLayerCount": 1, "TotalLayerCount": 1, "GeneratedUtc": "2026-01-01T00:00:00Z" }
+}
+```
+
