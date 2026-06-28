@@ -37,9 +37,15 @@ for (const [filename, info] of Object.entries(endpoints)) {
     const op = info.ops[opName];
     const jsName = toCamel(opName);
     const routeLiteral = JSON.stringify(op.route || '');
-    return `    // ${op.verb} ${routePrefix}/${op.route}\n    this.${jsName} = makeOperation(http, ${JSON.stringify(
+    const opts = {};
+    if (op.query && op.query.length) opts.query = op.query;
+    if (op.bodyParam) opts.bodyParam = op.bodyParam;
+    const optsLiteral = Object.keys(opts).length ? `, ${JSON.stringify(opts)}` : '';
+    const queryNote = op.query && op.query.length ? ` (query: ${op.query.join(', ')})` : '';
+    const bodyNote = op.bodyParam ? ` (body: ${op.bodyParam})` : '';
+    return `    // ${op.verb} ${routePrefix}/${op.route}${queryNote}${bodyNote}\n    this.${jsName} = makeOperation(http, ${JSON.stringify(
       routePrefix
-    )}, ${JSON.stringify(op.verb.toUpperCase())}, ${routeLiteral});`;
+    )}, ${JSON.stringify(op.verb.toUpperCase())}, ${routeLiteral}${optsLiteral});`;
   });
 
   const source = `'use strict';

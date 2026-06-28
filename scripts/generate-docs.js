@@ -43,13 +43,14 @@ function parseModuleFile(filePath) {
   const classMatch = src.match(/class (\w+) \{/);
   const routePrefixMatch = src.match(/Generated wrapper for (\S+)/);
   const sourceFileMatch = src.match(/source: WEB9 Singularity WebAPI (\S+)\)/);
-  const opPattern = /this\.(\w+) = makeOperation\(http, "([^"]*)", "([A-Z]+)", "([^"]*)"\);/g;
+  const opPattern = /this\.(\w+) = makeOperation\(http, "([^"]*)", "([A-Z]+)", "([^"]*)"(?:, (\{.*\}))?\);/g;
 
   const ops = [];
   let m;
   while ((m = opPattern.exec(src))) {
-    const [, jsName, prefix, verb, route] = m;
-    ops.push({ jsName, prefix, verb, route });
+    const [, jsName, prefix, verb, route, optsLiteral] = m;
+    const opts = optsLiteral ? JSON.parse(optsLiteral) : {};
+    ops.push({ jsName, prefix, verb, route, query: opts.query || [], bodyParam: opts.bodyParam || null });
   }
 
   return {
@@ -79,7 +80,9 @@ for (const file of files) {
     .map((op) => {
       const tokens = routeTokens(op.route);
       const fullRoute = op.route ? `${op.prefix}/${op.route}` : op.prefix;
-      return `| \`${op.jsName}\` | ${op.verb} | \`${fullRoute}\` | ${tokens.length ? tokens.map((t) => `\`${t}\``).join(', ') : '–'} |`;
+      const queryCol = op.query.length ? op.query.map((q) => `\`${q}\``).join(', ') : '–';
+      const bodyCol = op.bodyParam ? `\`${op.bodyParam}\`` : op.verb === 'GET' || op.verb === 'DELETE' ? '–' : 'remaining args';
+      return `| \`${op.jsName}\` | ${op.verb} | \`${fullRoute}\` | ${tokens.length ? tokens.map((t) => `\`${t}\``).join(', ') : '–'} | ${queryCol} | ${bodyCol} |`;
     })
     .join('\n');
 
@@ -101,8 +104,8 @@ URL; everything else becomes the query string (GET/DELETE) or JSON body
 
 ## Methods
 
-| Method | HTTP | Route | Route params |
-| --- | --- | --- | --- |
+| Method | HTTP | Route | Route params | Query params | Body |
+| --- | --- | --- | --- | --- | --- |
 ${rows}
 
 ## Example

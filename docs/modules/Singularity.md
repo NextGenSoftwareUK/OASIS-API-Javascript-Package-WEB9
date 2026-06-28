@@ -12,9 +12,9 @@ URL; everything else becomes the query string (GET/DELETE) or JSON body
 
 ## Methods
 
-| Method | HTTP | Route | Route params |
-| --- | --- | --- | --- |
-| `getUnifiedStatus` | GET | `v1/singularity/status` | – |
+| Method | HTTP | Route | Route params | Query params | Body |
+| --- | --- | --- | --- | --- | --- |
+| `getUnifiedStatus` | GET | `v1/singularity/status` | – | – | – |
 
 ## Example
 
