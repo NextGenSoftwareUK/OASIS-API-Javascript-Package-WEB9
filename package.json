@@ -1,0 +1,63 @@
+{
+  "name": "web9-oasis-singularity-api",
+  "version": "1.0.0",
+  "description": "Isomorphic (Node + browser) JavaScript/TypeScript-friendly client for the WEB9 OASIS Singularity API - one unified, live status view aggregated across every other OASIS layer (WEB4-WEB8), built on the OASIS2 WEB9 WebAPI.",
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "index.js",
+    "index.mjs",
+    "index.d.ts",
+    "src",
+    "docs"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate-modules.js",
+    "docs": "node scripts/generate-docs.js",
+    "types": "node scripts/generate-types.js",
+    "test": "node --test test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NextGenSoftwareUK/OASIS-API-Javascript-Package-WEB9.git"
+  },
+  "author": "NextGen Software Ltd",
+  "license": "MIT",
+  "keywords": [
+    "WEB9 Singularity API",
+    "WEB9 WebAPI",
+    "OASIS Singularity",
+    "Unified Status",
+    "Network Observing Itself",
+    "OASIS API",
+    "WEB 4",
+    "WEB 5",
+    "WEB 6",
+    "WEB 7",
+    "WEB 8",
+    "WEB 9",
+    "Blockchain",
+    "Interoperable",
+    "Metaverse",
+    "Aggregation",
+    "HOT-Swappable-Architecture",
+    "Decentralised",
+    "Distributed",
+    "Abstraction-Layer",
+    "SSO",
+    "Agent-Centric",
+    "GOD-Protocol/API",
+    "More Coming..."
+  ]
+}
