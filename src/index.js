@@ -7,7 +7,7 @@ const { attachGeneratedModules } = require('./modules/index');
 /**
  * Main SDK entry point. Works in Node 18+ and any modern browser.
  *
- *   const { Web9Client } = require('web9-oasis-singularity-api');
+ *   const { Web9Client } = require('@oasisomniverse/web9-api');
  *   const web9 = new Web9Client({ baseUrl: 'https://api.web9.oasisomniverse.one' });
  *   web9.setToken(jwtToken); // reuse a WEB4 OASIS JWT - WEB9 has no auth of its own
  *   const status = await web9.singularity.getUnifiedStatus();

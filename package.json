@@ -1,6 +1,7 @@
 {
-  "name": "web9-oasis-singularity-api",
+  "name": "@oasisomniverse/web9-api",
   "version": "1.0.0",
+  "publishConfig": { "access": "public" },
   "description": "Isomorphic (Node + browser) JavaScript/TypeScript-friendly client for the WEB9 OASIS Singularity API - one unified, live status view aggregated across every other OASIS layer (WEB4-WEB8), built on the OASIS2 WEB9 WebAPI.",
   "main": "index.js",
   "module": "index.mjs",

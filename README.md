@@ -1,4 +1,4 @@
-# web9-oasis-singularity-api
+# @oasisomniverse/web9-api
 
 Isomorphic (Node 18+ and browser) JavaScript/TypeScript-friendly client for the
 **WEB9 OASIS Singularity API** - one unified, live status view aggregated
@@ -11,14 +11,14 @@ browser.
 ## Installation
 
 ```bash
-npm install web9-oasis-singularity-api
+npm install @oasisomniverse/web9-api
 ```
 
 ## Quick start
 
 ```js
-const { Web9Client } = require('web9-oasis-singularity-api');
-// or: import { Web9Client } from 'web9-oasis-singularity-api';
+const { Web9Client } = require('@oasisomniverse/web9-api');
+// or: import { Web9Client } from '@oasisomniverse/web9-api';
 
 const web9 = new Web9Client({ baseUrl: 'https://api.web9.oasisomniverse.one' });
 
