@@ -111,14 +111,14 @@ If the answer is YES, then please [proceed to here](https://github.com/NextGenSo
 <https://github.com/NextGenSoftwareUK/OASIS><br>
 <http://oasisomniverse.one><br>
 <http://www.ourworldthegame.com><br>
-
 <http://www.nextgenworld.co.uk><br>
 
-<https://youtu.be/wdYa5wQUfrg><br>
-<https://www.youtube.com/watch?v=2oY4_LZBW4M&t=3s><br>
-<https://www.youtube.com/watch?v=rvNJ6poMduo&t=5s><br>
-<https://www.youtube.com/watch?v=zyVmciqD9rs><br>
-<https://www.youtube.com/watch?v=SB97mvzJiRg&t=3s><br>
+<https://www.npmjs.com/package/@oasisomniverse/web4-api><br>
+<https://www.npmjs.com/package/@oasisomniverse/web5-api><br>
+<https://www.npmjs.com/package/@oasisomniverse/web6-api><br>
+<https://www.npmjs.com/package/@oasisomniverse/web7-api><br>
+<https://www.npmjs.com/package/@oasisomniverse/web8-api><br>
+<https://www.npmjs.com/package/@oasisomniverse/web10-api><br>
 
 **TOGETHER WE CAN CREATE A BETTER WORLD**
 
