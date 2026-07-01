@@ -92,7 +92,7 @@ for (const file of files) {
 
   const content = `# ${moduleName} — \`web9.${clientProp}\`
 
-Source controller: [\`${sourceFile}\`](https://github.com/NextGenSoftwareUK/OASIS2/blob/main/WEB9/NextGenSoftware.OASIS.Web9.WebAPI/Controllers/${sourceFile})
+Source controller: [\`${sourceFile}\`](https://github.com/NextGenSoftwareUK/OASIS/blob/main/WEB9/NextGenSoftware.OASIS.Web9.WebAPI/Controllers/${sourceFile})
 Route prefix: \`${routePrefix}\`
 ${ops.length} operation(s).
 

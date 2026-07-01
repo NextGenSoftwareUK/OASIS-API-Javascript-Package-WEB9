@@ -1,6 +1,6 @@
 # Singularity — `web9.singularity`
 
-Source controller: [`SingularityController.cs`](https://github.com/NextGenSoftwareUK/OASIS2/blob/main/WEB9/NextGenSoftware.OASIS.Web9.WebAPI/Controllers/SingularityController.cs)
+Source controller: [`SingularityController.cs`](https://github.com/NextGenSoftwareUK/OASIS/blob/main/WEB9/NextGenSoftware.OASIS.Web9.WebAPI/Controllers/SingularityController.cs)
 Route prefix: `v1/singularity`
 1 operation(s).
 
