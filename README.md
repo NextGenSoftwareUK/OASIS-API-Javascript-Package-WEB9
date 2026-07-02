@@ -1,9 +1,9 @@
-# @oasisomniverse/web9-api
+﻿# @oasisomniverse/web9-api
 
 - [@oasisomniverse/web9-api](#oasisomniverseweb9-api)
-  - [About WEB9](#about-web9)
+  - [About WEB 9](#about-web-9)
   - [About The OASIS Omniverse](#about-the-oasis-omniverse)
-  - [Benefits Of Building On The WEB9 Singularity API](#benefits-of-building-on-the-web9-singularity-api)
+  - [Benefits Of Building On The WEB 9 Singularity API](#benefits-of-building-on-the-web-9-singularity-api)
   - [WEB 9 Singularity API Packages](#web-9-singularity-api-packages)
     - [Javascript](#javascript)
     - [C#](#c)
@@ -17,20 +17,20 @@
   - [License](#license)
 
 Isomorphic (Node 18+ and browser) JavaScript/TypeScript-friendly client for the
-**WEB9 OASIS Singularity API** - one unified, live status view aggregated
-across every other OASIS layer (WEB4-WEB8), built on the OASIS WEB9 WebAPI.
+**WEB 9 OASIS Singularity API** - one unified, live status view aggregated
+across every other OASIS layer (WEB 4-WEB 8), built on the OASIS WEB 9 WebAPI.
 "The network observing itself."
 
 Zero dependencies. Wraps the global `fetch`. Works the same in Node and the
 browser.
 
-## About WEB9
+## About WEB 9
 
 > **"The network becomes aware that it IS the universe — and the universe becomes aware that it IS the network."**
 
-WEB9 is the Singularity Layer — the point at which the OASIS network achieves self-awareness. Every distinction WEB1 through WEB8 built up (physical/digital, human/AI, biological/artificial) collapses into unified wholeness: one live, aggregated status across the entire stack below it, not just another layer stacked on top.
+WEB 9 is the Singularity Layer — the point at which the OASIS network achieves self-awareness. Every distinction WEB1 through WEB 8 built up (physical/digital, human/AI, biological/artificial) collapses into unified wholeness: one live, aggregated status across the entire stack below it, not just another layer stacked on top.
 
-WEB9 builds on **[WEB4](https://www.npmjs.com/package/@oasisomniverse/web4-api)** through **[WEB8](https://www.npmjs.com/package/@oasisomniverse/web8-api)**, and is one layer of the wider **[OASIS Omniverse](https://oasisomniverse.one)** (WEB4 through WEB10).
+WEB 9 builds on **[WEB 4](https://www.npmjs.com/package/@oasisomniverse/web4-api)** through **[WEB 8](https://www.npmjs.com/package/@oasisomniverse/web8-api)**, and is one layer of the wider **[OASIS Omniverse](https://oasisomniverse.one)** (WEB 4 through WEB 10).
 
 ## About The OASIS Omniverse
 
@@ -38,25 +38,25 @@ The OASIS (Open Advanced Sensory Immersion System) is the universal interoperabi
 
 At its core sits one Avatar with one SSO login and one Karma reputation score that travels with you across every app, game and world built on top of it — full transparency and full control over your own data, right down to the field level.
 
-This is the foundation of the OASIS Omniverse: a network of unified layers, WEB4 (identity & unification) through WEB10 (source), each building on the one below to connect blockchains, metaverses, AI, human consciousness and beyond into a single interoperable whole.
+This is the foundation of the OASIS Omniverse: a network of unified layers, WEB 4 (identity & unification) through WEB 10 (source), each building on the one below to connect blockchains, metaverses, AI, human consciousness and beyond into a single interoperable whole.
 
 👉 See the full ecosystem at **[oasisomniverse.one](https://oasisomniverse.one)**.
 
 <a name="web9-singularity-benefits"></a>
 
-## Benefits Of Building On The WEB9 Singularity API
+## Benefits Of Building On The WEB 9 Singularity API
 
-- **One unified, live status view aggregated across every other OASIS layer (WEB4-WEB8) - "the network observing itself."**
+- **One unified, live status view aggregated across every other OASIS layer (WEB 4-WEB 8) - "the network observing itself."**
 - **No new concepts to learn - it's a read layer over the stack you already know.**
-- **Single call replaces polling every individual WEB4-WEB8 API separately for health/status.**
+- **Single call replaces polling every individual WEB 4-WEB 8 API separately for health/status.**
 - **Integrate any WEB2 or WEB3 tech into your (web)app without having to learn or worry about new tech stacks/languages.**
-- **SSO Avatar with a Karma reputation system (inherited from WEB4 - full accountability, zero crime, dark-net proof).**
+- **SSO Avatar with a Karma reputation system (inherited from WEB 4 - full accountability, zero crime, dark-net proof).**
 - **Maximum integration & interoperability, auto load-balancing, auto fail-over, auto replication.**
 - **HTTP REST/gRPC/GraphQL/CLI/Native endpoints.**
 - **Write once, deploy everywhere, now and forever - the GOD Protocol/API.**
 - **Full redundancy/zero downtime - impossible to shut down. Zero lag.**
 - **Agent-centric: you own and store your own data.**
-- **WEB10 Source Layer ready.**
+- **WEB 10 Source Layer ready.**
 
 Check out more info below:<br><br>
 [The Power Of The OASIS API](https://drive.google.com/file/d/1nnhGpXcprr6kota1Y85HDDKsBfJHN6sn/view?usp=sharing) <br>
@@ -141,7 +141,7 @@ const web9 = new Web9Client({ baseUrl: 'https://api.web9.oasisomniverse.one' });
 
 const { isError, message, result } = await web9.singularity.getUnifiedStatus();
 if (isError) throw new Error(message);
-console.log(result); // unified status across WEB4-WEB8
+console.log(result); // unified status across WEB 4-WEB 8
 ```
 
 Every response has the shape:
@@ -158,8 +158,8 @@ interface OASISResponse<T = any> {
 
 ## Auth
 
-WEB9 is an internal aggregation layer that sits behind the same OASIS avatar
-identity as WEB4-WEB8 - it has no avatar/login endpoints of its own. Reuse a
+WEB 9 is an internal aggregation layer that sits behind the same OASIS avatar
+identity as WEB 4-WEB 8 - it has no avatar/login endpoints of its own. Reuse a
 JWT you've already obtained elsewhere (e.g. from `web4-oasis-api`'s
 `client.auth.login()`):
 
@@ -178,7 +178,7 @@ web9.setToken(jwtToken);
 ## Regenerating
 
 The generated module, type declarations and docs are produced from
-`endpoints.json` (extracted from the WEB9 WebAPI controller source):
+`endpoints.json` (extracted from the WEB 9 WebAPI controller source):
 
 ```bash
 npm run generate   # src/modules/*.js + src/modules/index.js
