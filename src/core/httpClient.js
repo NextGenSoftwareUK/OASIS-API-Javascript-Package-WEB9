@@ -26,7 +26,7 @@ class HttpClient {
     }
     this.baseUrl = baseUrl.replace(/\/+$/, '');
     this.tokenStore = tokenStore;
-    this.fetchImpl = fetchImpl.bind(globalThis);
+    this._customFetch = fetchImpl !== globalThis.fetch ? fetchImpl : null;
   }
 
   setBaseUrl(baseUrl) {
@@ -57,7 +57,7 @@ class HttpClient {
 
     let res;
     try {
-      res = await this.fetchImpl(url, init);
+      res = await (this._customFetch ? this._customFetch(url, init) : globalThis.fetch(url, init));
     } catch (err) {
       return { isError: true, message: `Network error calling ${url}: ${err.message}`, exception: err };
     }
