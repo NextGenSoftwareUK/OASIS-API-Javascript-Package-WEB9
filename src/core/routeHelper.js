@@ -54,7 +54,7 @@ function makeOperation(http, routePrefix, verb, route, opts = {}) {
   const declaredQueryKeys = opts.query || [];
   const bodyParam = opts.bodyParam;
 
-  return async function operation(args = {}) {
+  return async function operation(args = {}, requestOptions = {}) {
     const { path, rest } = resolveRoute(route, args);
     const fullPath = path ? `${routePrefix}/${path}` : routePrefix;
 
@@ -78,7 +78,7 @@ function makeOperation(http, routePrefix, verb, route, opts = {}) {
     }
 
     const hasQuery = Object.keys(query).length > 0;
-    return http.request(verb, fullPath, { query: hasQuery ? query : undefined, body });
+    return http.request(verb, fullPath, { query: hasQuery ? query : undefined, body, idempotencyKey: requestOptions.idempotencyKey });
   };
 }
 

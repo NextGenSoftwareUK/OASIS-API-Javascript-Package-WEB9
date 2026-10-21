@@ -42,11 +42,16 @@ class HttpClient {
    * @param {boolean} [options.auth] attach Authorization: Bearer <token> (default true)
    * @param {string} [options.token] override token for this single request
    */
-  async request(verb, path, { query, body, auth = true, token } = {}) {
+  async request(verb, path, { query, body, auth = true, token, idempotencyKey } = {}) {
     const url = `${this.baseUrl}/${path.replace(/^\/+/, '')}${buildQueryString(query)}`;
     const headers = {
       'Content-Type': 'application/json',
-      Accept: 'application/json'
+      Accept: 'application/json',
+      // A caller can retain this non-secret operation identifier for a retry.
+      // Timestamp + randomness also supports Node 18 without global Web Crypto.
+      'Idempotency-Key': idempotencyKey ?? (globalThis.crypto?.randomUUID
+        ? globalThis.crypto.randomUUID()
+        : `sdk-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`)
     };
 
     const bearer = token || (auth ? this.tokenStore?.getToken() : null);
@@ -59,10 +64,18 @@ class HttpClient {
     try {
       res = await (this._customFetch ? this._customFetch(url, init) : globalThis.fetch(url, init));
     } catch (err) {
-      return { isError: true, message: `Network error calling ${url}: ${err.message}`, exception: err };
+      return { isError: true, message: `Network error calling ${url}: ${err.message}`, exception: err, idempotencyKey: headers['Idempotency-Key'] };
     }
 
-    const text = await res.text();
+    let text;
+    try {
+      text = await res.text();
+    } catch (err) {
+      // Headers may arrive after the server has executed the operation even
+      // when its response body is lost. Preserve the operation identity.
+      return { isError: true, message: `Response body error calling ${url}: ${err.message}`,
+        exception: err, statusCode: res.status, idempotencyKey: headers['Idempotency-Key'] };
+    }
     let json;
     try {
       json = text ? JSON.parse(text) : null;
@@ -73,7 +86,7 @@ class HttpClient {
     if (!res.ok) {
       const message =
         json?.result?.message || json?.message || json?.title || `Request failed with status ${res.status}`;
-      return { isError: true, message, statusCode: res.status, raw: json };
+      return { isError: true, message, statusCode: res.status, raw: json, idempotencyKey: headers['Idempotency-Key'] };
     }
 
     // OASIS responses are typically { isError, message, result: { isError, message, result: <payload> } }.
@@ -86,7 +99,8 @@ class HttpClient {
       message: inner?.message || json?.message || null,
       result: payload,
       raw: json,
-      statusCode: res.status
+      statusCode: res.status,
+      idempotencyKey: headers['Idempotency-Key']
     };
   }
 

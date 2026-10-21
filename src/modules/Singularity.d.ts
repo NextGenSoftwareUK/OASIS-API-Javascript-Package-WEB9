@@ -5,5 +5,5 @@ export declare class SingularityModule {
   constructor(http: unknown);
 
   /** GET v1/singularity/status */
-  getUnifiedStatus(args?: Record<string, any>): Promise<OASISResponse>;
+  getUnifiedStatus(args?: Record<string, any>, requestOptions?: { idempotencyKey?: string }): Promise<OASISResponse>;
 }

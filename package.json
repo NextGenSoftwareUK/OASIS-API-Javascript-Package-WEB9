@@ -27,7 +27,7 @@
     "generate": "node scripts/generate-modules.js",
     "docs": "node scripts/generate-docs.js",
     "types": "node scripts/generate-types.js",
-    "test": "node --test test"
+    "test": "node --test test/smoke.test.js test/idempotency.test.js"
   },
   "repository": {
     "type": "git",

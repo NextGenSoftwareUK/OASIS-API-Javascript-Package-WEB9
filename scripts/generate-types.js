@@ -49,7 +49,7 @@ for (const file of files) {
     .map((op) => {
       const queryNote = op.query.length ? ` (query: ${op.query.join(', ')})` : '';
       const bodyNote = op.bodyParam ? ` (body: ${op.bodyParam})` : '';
-      return `  /** ${op.verb} ${op.prefix}/${op.route}${queryNote}${bodyNote} */\n  ${op.jsName}(args?: Record<string, any>): Promise<OASISResponse>;`;
+      return `  /** ${op.verb} ${op.prefix}/${op.route}${queryNote}${bodyNote} */\n  ${op.jsName}(args?: Record<string, any>, requestOptions?: { idempotencyKey?: string }): Promise<OASISResponse>;`;
     })
     .join('\n\n');
 
@@ -78,6 +78,8 @@ export interface OASISResponse<T = any> {
   result: T;
   raw: any;
   statusCode: number;
+  /** Retain and pass as requestOptions.idempotencyKey when retrying the same operation. */
+  idempotencyKey?: string;
 }
 
 export interface OASISSession {

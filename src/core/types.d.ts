@@ -5,6 +5,8 @@ export interface OASISResponse<T = any> {
   result: T;
   raw: any;
   statusCode: number;
+  /** Retain and pass as requestOptions.idempotencyKey when retrying the same operation. */
+  idempotencyKey?: string;
 }
 
 export interface OASISSession {
