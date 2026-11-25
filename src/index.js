@@ -25,6 +25,14 @@ class Web9Client {
     attachGeneratedModules(this, this.http);
   }
 
+  /**
+   * GET /health - liveness of the WEB9 API. No token needed.
+   * Resolves to { isError: false, result: { status: 'healthy' } } when it is up.
+   */
+  health() {
+    return this.http.get('health', { auth: false });
+  }
+
   setBaseUrl(baseUrl) {
     this.http.setBaseUrl(baseUrl);
   }

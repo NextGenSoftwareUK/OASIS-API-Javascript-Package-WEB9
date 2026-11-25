@@ -35,6 +35,8 @@ export declare class Web9Client {
   readonly http: HttpClient;
   readonly tokenStore: TokenStore;
   readonly singularity: SingularityModule;
+  /** GET /health - liveness check; no token needed. */
+  health(): Promise<OASISResponse>;
   setBaseUrl(baseUrl: string): void;
   setToken(jwtToken: string, sessionExtras?: Partial<OASISSession>): void;
 }
